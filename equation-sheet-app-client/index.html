@@ -4,13 +4,44 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
-  <title>Document</title>
+  <title>Equation Sheet Generator</title>
 </head>
 <body>
+
+      <div >
+        <h1 class="center">Welcome to Equation Sheet Generator</h1>
+      </div>
+      
+        <div class="row">
+
+                <div class="col s12 m6 l6">
+                <label for="name">Equation Name</label>
+                  <form id="blog-form" action="#">
+                    <div class="input-field">
+                      <input type="text" name="name" id="name">
+                    </div>
+                    <div class="col s12 m6 l6">
+                            <label for="equation">Equation</label>
+                            <form id="blog-form" action="#">
+                              <div class="input-field">
+                            <input type="text" name="equation" id="equation">
+                    </div>
+            
+                
+                    <input type="submit" value="Add Equation" class="btn">
+                  </form>
+                </div>
+            
+                <div class="col s12 m6 l6 post-lists">
+                  <h3 class="center">Equation Sheet</h3>
+                </div>
+              </div>
   
 
   <script src="javascript/globals.js"></script>
-  
+  <script src="javascripts/models/equation.js"></script>
+  <script src="javascripts/models/field.js"></script>
+  <script src="javascripts/service/api.js"></script>
   <script src="javascript/index.js"></script>
 
 </body>
