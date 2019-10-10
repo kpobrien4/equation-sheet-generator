@@ -1,7 +1,7 @@
 class EquationsController < ApplicationController
     def index
         @equations = Equation.all
-        render json: @equations
+        render json: @equations, include: [:field]
     end
 
     def show
@@ -9,8 +9,7 @@ class EquationsController < ApplicationController
       end
     
       def create
-        @field = Field.find_or_create_by(name: field_params[:name])
-        @equation = @field.equations.build(equation_params)
+        @equation = Equation.new(equation_params)
     
         if @equation.save
           render json: @equation, include: [:field], status: :created, location: @equation
@@ -41,6 +40,6 @@ class EquationsController < ApplicationController
         end
     
         def equation_params
-          params.require(:equation).permit(:name, :equation_content)
+          params.require(:equation).permit(:name, :equation_content, :field_id)
         end
 end

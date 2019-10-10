@@ -1,17 +1,35 @@
 class Api {
     static baseUrl = 'http://localhost:3000'
   
-    static getFields() {
-      fetch(Api.baseUrl + '/api/fields')
+    static getEquations() {
+      fetch(Api.baseUrl + '/api/equations/')
         .then(resp => resp.json())
-        .then(fields => {
-          fields.forEach(field => {
-            let newField = new Field(field.name, field.description);
+        .then(equations => {
+          equations.forEach(equation => {
+            let newEquation = new Equation(equation.name, equation.equation_content, equation.field);
           })
-          Field.renderAll();
+          Equation.renderAll();
         })
         .catch(errors => console.log('d', errors))
     }
-
+  
+    static submitEquation(event) {
+      event.preventDefault();
+      let data = createData();
+      fetch(Api.baseUrl + '/api/equations', {
+        method: "POST",
+        headers: {
+          'Accept': 'application/json',
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(data)
+      })
+        .then(response => response.json())
+        .then(data => {
+          let field = Field.findOrCreate(data.field.name);
+          let equation = new Equation(data.name, field, data.equation_content);
+          equation.display();
+        })
+    }
   
   }

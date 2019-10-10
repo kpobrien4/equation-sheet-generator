@@ -7,8 +7,8 @@ class Field {
       Field.all.push(this);
     }
   
-    fields() {
-      Field.all.filter(field => equation.field.name === this.name);
+    equations() {
+      Equation.all.filter(equation => equation.field.name === this.name);
     }
   
     static find(name) {
@@ -22,5 +22,14 @@ class Field {
       } else {
         return new Field(name);
       }
+    }
+
+  
+    display() {
+      document.getElementsByClassName("fields-lists")[0].innerHTML += this.template();
+    }
+
+    static renderAll() {
+      Field.all.forEach(field => field.display())
     }
   }

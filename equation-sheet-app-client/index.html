@@ -4,6 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
+
   <title>Equation Sheet Generator</title>
 </head>
 <body>
@@ -16,33 +17,41 @@
 
                 <div class="col s12 m6 l6">
                 <label for="name">Equation Name</label>
-                  <form id="blog-form" action="#">
+                  <form id="equation-form" action="#">
                     <div class="input-field">
                       <input type="text" name="name" id="name">
                     </div>
                     <div class="col s12 m6 l6">
-                            <label for="equation">Equation</label>
+                            <label for="equation_content">Equation</label>
                             <form id="blog-form" action="#">
                               <div class="input-field">
-                            <input type="text" name="equation" id="equation">
+                            <input type="text" name="equation_content" id="equation_content">
                     </div>
+                    <div class="col s12 m6 l6">
+                            <label for="field">Field</label>
+                            <select id="mySelect">
+                              
+                            </select>
+                          </div>
             
                 
                     <input type="submit" value="Add Equation" class="btn">
                   </form>
-                </div>
-            
-                <div class="col s12 m6 l6 post-lists">
-                  <h3 class="center">Equation Sheet</h3>
-                </div>
-              </div>
-  
 
-  <script src="javascript/globals.js"></script>
+                  
+                </div>
+                <div class="col s12 m6 l6 equations-lists">
+                        <h3 class="center">Equation Sheet</h3>
+                      </div>
+
+              </div>
+
+
+  <script src="javascripts/globals.js"></script>
   <script src="javascripts/models/equation.js"></script>
   <script src="javascripts/models/field.js"></script>
   <script src="javascripts/service/api.js"></script>
-  <script src="javascript/index.js"></script>
+  <script src="javascripts/index.js"></script>
 
 </body>
 </html>
