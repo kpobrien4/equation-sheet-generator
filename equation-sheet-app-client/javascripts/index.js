@@ -28,24 +28,6 @@ function getFields() {
 }
 
 
-  function submitForm() {
-      event.preventDefault();
-      let data = createData();
-      fetch(equationsUrl, {
-        method: "POST",
-        headers: {
-            'Accept': 'application/json',
-            'Content-Type': 'application/json'
-        },
-        body: JSON.stringify(data)
-      })
-      .then(response => response.json())
-      .then(equation => {
-          displayEquations(equation)
-          clearForm();
-        })
-  }
-
 
 function latexify() {
   algebra.toTex(document.getElementById("equation_content"))

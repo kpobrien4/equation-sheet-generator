@@ -1,11 +1,12 @@
 class EquationsController < ApplicationController
+  before_action :set_equation, only: [:show, :update, :destroy]
     def index
         @equations = Equation.all
         render json: @equations, include: [:field]
     end
 
     def show
-        render json: @equation
+        render json: @equation, include: [:field], status: :ok
       end
     
       def create

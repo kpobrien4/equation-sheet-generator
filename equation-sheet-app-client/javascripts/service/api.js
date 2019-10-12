@@ -27,9 +27,10 @@ class Api {
         .then(response => response.json())
         .then(data => {
           let field = Field.findOrCreate(data.field.name);
-          let equation = new Equation(data.name, field, data.equation_content);
+          let equation = new Equation(data.name, data.equation_content, field);
           equation.display();
         })
+        clearForm()
     }
   
   }
