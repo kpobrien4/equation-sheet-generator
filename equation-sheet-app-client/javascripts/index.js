@@ -28,12 +28,6 @@ function getFields() {
 }
 
 
-
-function latexify() {
-  algebra.toTex(document.getElementById("equation_content"))
-}
-
-
 function addSubmitEventToForm() {
     document.getElementById("equation-form").addEventListener('submit', Api.submitEquation);
   }
@@ -43,5 +37,6 @@ document.addEventListener("DOMContentLoaded", function() {
     addSubmitEventToForm();
     getFields()
     Api.getEquations()
+
  });
 
