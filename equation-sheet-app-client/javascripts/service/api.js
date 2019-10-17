@@ -6,7 +6,7 @@ class Api {
         .then(resp => resp.json())
         .then(equations => {
           equations.forEach(equation => {
-            let newEquation = new Equation(equation.name, equation.equation_content, equation.field);
+            let newEquation = new Equation(equation.name, equation.equation_content, equation.field, equation.id);
           })
           Equation.renderAll();
         })
@@ -27,7 +27,7 @@ class Api {
         .then(response => response.json())
         .then(data => {
            let field = Field.findOrCreate(data.field.name);
-           let equation = new Equation(data.name, data.equation_content, field);
+           let equation = new Equation(data.name, data.equation_content, field, data.id);
           equation.display();
         })
         clearForm()

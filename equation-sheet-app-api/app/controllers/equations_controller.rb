@@ -29,6 +29,7 @@ class EquationsController < ApplicationController
 
       def destroy
         @equation.destroy
+        render json: @equation
       end
     
       private

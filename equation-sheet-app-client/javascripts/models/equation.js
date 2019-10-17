@@ -1,44 +1,52 @@
 class Equation {
     static all = [];
   
-    constructor(name, equation_content, field) {
+    constructor(name, equation_content, field, id) {
       this.name = name;
       this.equation_content = equation_content;
       this.field = field
+      this.id = id
       Equation.all.push(this);
     }
   
     template() {
       // let power = this.equation_content.split("^")[1]
       // this.equation_content = this.equation_content.replace(`^${power}`, `&sup${power}`)
-      return `
-          <div class="card-content">
-              <span class="card-title"></span> 
+      const newTemplate = document.createElement("div")
+      newTemplate.innerHTML = `
+      <span class="card-title"></span> 
               <h4>${this.field.name}</h4>
-              <p>${this.name}: ${this.equation_content} <input type="submit" value="Remove" class="delete"></p>
-        </div>
+              <p>${this.name}: ${this.equation_content} <button data-id="${this.id}" class="delete">Remove</button></p>
       `
-
+      return newTemplate      
     }
+
+    static deleteEquation(event) {
+      event.preventDefault();
+      let id = this.dataset.id
+      fetch(Api.baseUrl + `/api/equations/${id}`, {
+        method: "DELETE",
+        headers: {
+          'Accept': 'application/json',
+          'Content-Type': 'application/json'
+        },
+      })
+        .then(response => response.json())
+        .then(data => {
+          this.parentNode.parentNode.remove()
+        })
+    }
+  
+
 
     display() {
-       let deleteBtn = document.createElement('button')
-       deleteBtn.setAttribute('class', 'delete-equation-btn')
-       deleteBtn.innerText = 'Remove'
-       deleteBtn.addEventListener('click', event => this.deleteEquation(event, this))
-      document.getElementsByClassName("equations-lists")[0].innerHTML += this.template();
+      let newEquation = this.template()
+      let buttonInEquation = newEquation.querySelector("button")
+      buttonInEquation.addEventListener("click", Equation.deleteEquation)
+      document.getElementsByClassName("equations-lists")[0].appendChild(newEquation);
     }
 
-    deleteEquation() {
-      event.preventDefault()
-      fetch(`${equationsUrl}/${this.id}`,{
-          method: 'DELETE'
-      })
-      .then(() => { 
-          document.getElementById(`${this.id}`).remove()
-          Equation.all = Equation.all.filter(equation => equation.id !== this.id)
-      })
-  }
+
 
   
     static renderAll() {
