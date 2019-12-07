@@ -33,7 +33,7 @@ function addSubmitEventToForm() {
   }
 
 
-document.addEventListener("DOMContentLoaded", function() {   
+document.addEventListener("DOMContentLoaded", function() { 
     addSubmitEventToForm();
     getFields()
     Api.getEquations()
