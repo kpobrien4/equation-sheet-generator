@@ -10,13 +10,13 @@ class Equation {
     }
   
     template() {
-      // let power = this.equation_content.split("^")[1]
-      // this.equation_content = this.equation_content.replace(`^${power}`, `&sup${power}`)
       const newTemplate = document.createElement("div")
       newTemplate.innerHTML = `
       <span class="card-title"></span> 
+      <div class="eqcard">
               <h4>${this.field.name}</h4>
-              <p>${this.name}: ${this.equation_content}    <button data-id="${this.id}" class="edit">Edit</button>  <button data-id="${this.id}" class="delete">Remove</button> </p>
+              <p>${this.name}: ${this.equation_content}     <button data-id="${this.id}" class="delete">Remove</button> </p>
+        <div>
       `
       return newTemplate      
     }
@@ -30,7 +30,8 @@ class Equation {
         },
       }
     }
-
+    
+// Not included right now.
     static updateEquation(event) {
       event.preventDefault();
       let id = this.dataset.id
@@ -68,34 +69,34 @@ class Equation {
     }
   
 
-    displayEditForm(){
-      const editForm = document.createElement("form")
-      editForm.innerHTML = `
-      <div class="input-field">
-        <input type="text" name="name" id="name">
-      </div>
-  <div class="col s12 m6 l6">
-  <label for="equation_content">Equation</label>
-      <form id="blog-form" action="#">
-        <div class="input-field">
-          <input type="text" name="equation_content" id="equation_content">
-      </div>
-  <div class="col s12 m6 l6">
-  <label for="field">Field</label>
-        <select id="mySelect">
+  //   displayEditForm(){
+  //     const editForm = document.createElement("form")
+  //     editForm.innerHTML = `
+  //     <div class="input-field">
+  //       <input type="text" name="name" id="name">
+  //     </div>
+  // <div class="col s12 m6 l6">
+  // <label for="equation_content">Equation</label>
+  //     <form id="blog-form" action="#">
+  //       <div class="input-field">
+  //         <input type="text" name="equation_content" id="equation_content">
+  //     </div>
+  // <div class="col s12 m6 l6">
+  // <label for="field">Field</label>
+  //       <select id="mySelect">
 
-        </select>
-   </div>              
-      <input type="submit" value="Add Equation" class="btn">
-      `
-    }
+  //       </select>
+  //  </div>              
+  //     <input type="submit" value="Add Equation" class="btn">
+  //     `
+  //   }
 
 
     display() {
       let newEquation = this.template()
       let buttonInEquation = newEquation.querySelector(".delete")
-      let editButton = newEquation.querySelector(".edit")
-      editButton.addEventListener("click", Equation.updateEquation)
+      // let editButton = newEquation.querySelector(".edit")
+      // editButton.addEventListener("click", Equation.updateEquation)
       buttonInEquation.addEventListener("click", Equation.deleteEquation)
       document.getElementsByClassName("equations-lists")[0].appendChild(newEquation);
     }
