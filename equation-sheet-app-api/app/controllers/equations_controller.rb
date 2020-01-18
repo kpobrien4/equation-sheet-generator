@@ -21,7 +21,7 @@ class EquationsController < ApplicationController
     
       def update
         if @equation.update(equation_params)
-          render json: @equation
+          render json: @equation, include: [:field], status: :created, location: @equation
         else
           render json: @equation.errors, status: :unprocessable_entity
         end
