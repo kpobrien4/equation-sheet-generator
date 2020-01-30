@@ -1,7 +1,6 @@
 h1 { 
     text-align: center;
-    color: white;
-    background: black
+    color: black;
 
 }
 
@@ -55,16 +54,14 @@ input[type=text] {
   }
 
     body {
-	background-image: url("eqsg.jpg");
+	background-image: url("eqsg.png");
         background-repeat:no-repeat;
-       background-size: cover;
        background-position: top;
        background-size: 1500px 300px
 } 
 
 label {
-    color: white;
-    background: black
+    color: black;
 }
 
 .eqcard {
